@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 if ( ! defined( 'GFL_URL' ) )
 	define( 'GFL_URL', plugin_dir_url( __FILE__ ) );
 
-define( 'GFL_JS_URL', trailingslashit( GFL_URL . 'assets/js' ) );
+define( 'GFL_JS_URL', trailingslashit( GFL_URL . 'assets' ) );
 // ------------------------------------------------------------
 // Plugin paths, for including files
 // ------------------------------------------------------------

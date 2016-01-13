@@ -4,19 +4,46 @@ class Get_Facebook_Likes
 {
 	public function __construct()
 	{
-		add_action( 'wp_head', array( $this, 'update_likes' ), 9999 );
+		// add_action( 'wp_head', array( $this, 'update_likes' ), 9999 );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue' ) );
+
+		add_action( 'wp_ajax_nopriv_update_likes', array( $this, 'ajax_update_likes' ) );
+	}
+
+	public function ajax_update_likes()
+	{
+		if ( ! isset( $_REQUEST['post_id'] ) )
+			return;
+
+		$post_id = intval( $_REQUEST['post_id'] );
+
+		$this->update_likes( $post_id );
+
+		exit;
 	}
 
 	public function frontend_enqueue()
 	{
+		if ( ! is_singular() )
+			return;
 
+		$post_id = $this->get_post_id();
+		
+		if ( ! is_integer( $post_id ) )
+			return;
+
+		wp_enqueue_script( 'get-facebook-likes', GFL_JS_URL . 'get-facebook-likes.js', array('jquery'), '1.0', true );
+
+		wp_localize_script( 'get-facebook-likes', 'GFL', array( 
+			'ajax_url' => admin_url( 'admin-ajax.php' ), 
+			'post_id' => $post_id 
+		) );
 	}
 
 	public function get()
 	{
-
+		//
 	}
 
 	public function set( $post_id, $total, $action = 'like_count' )
@@ -30,7 +57,7 @@ class Get_Facebook_Likes
 		{
 			foreach ( $total as $action => $count )
 			{
-				if ( $count <= 0 )
+				if ( $count < 0 )
 					continue;
 
 				update_post_meta( $post_id, $action, $count );
@@ -42,16 +69,15 @@ class Get_Facebook_Likes
 
 	private function api_call_get_facebook_likes( $url )
 	{
-		$url = 'https://metabox.io';
-
 		$graph_api_endpoint = "https://api.facebook.com/method/links.getStats?urls={$url}&format=json";
 
 		$data = json_decode( file_get_contents( $graph_api_endpoint ) );
+
 		$data = $data[0];
-		
+	
 		$total = array();
 
-		$actions = gfl_settings('actions');
+		$actions = gfl_setting('actions');
 
 		foreach ( $actions as $action )
 		{
@@ -61,7 +87,7 @@ class Get_Facebook_Likes
 		return $total;
 	}
 
-	public function update_likes()
+	private function get_post_id()
 	{
 		global $post;
 
@@ -72,9 +98,17 @@ class Get_Facebook_Likes
 
 		if ( isset( $post->ID ) && is_int( $post->ID ) )
 			$post_id = $post->ID;
+
+		return $post_id;
+	}
+
+	public function update_likes( $post_id = null )
+	{
+		if ( is_null( $post_id ) )
+			$post_id 		= $this->get_post_id();
 		
 		$url 			= get_permalink( $post_id );
-
+		
 		$facebook_likes = $this->api_call_get_facebook_likes( $url );
 
 		$this->set( $post_id, $facebook_likes );

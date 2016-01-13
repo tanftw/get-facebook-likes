@@ -1,6 +1,6 @@
 <?php
 
-function gfl_get_setting( $setting_name = '' )
+function gfl_setting( $setting_name = '' )
 {
  	$settings = array(
 		'actions' 	=> array( 'like_count', 'share_count', 'comment_count', 'total_count' ),
@@ -22,5 +22,5 @@ function the_likes()
 
 function get_likes( $post_id = null )
 {
-	$
+	
 }
