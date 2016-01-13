@@ -15,12 +15,19 @@ class Get_Facebook_Likes
 		add_action( 'wp_dashboard_setup', array( $this, 'add_dashboard_widgets' ) );
 	}
 
+	/**
+	 * Ajax Update Like method
+	 * 
+	 * @return Exit after complete
+	 */
 	public function ajax_update_likes()
 	{
-		if ( ! isset( $_REQUEST['post_id'] ) )
+		if ( ! isset( $_REQUEST['url'] ) )
 			return;
 
-		$post_id = intval( $_REQUEST['post_id'] );
+		$url 		= trim( $_REQUEST['url'] );
+
+		$post_id 	= url_to_postid( $url );
 
 		$this->update_likes( $post_id );
 
@@ -29,19 +36,10 @@ class Get_Facebook_Likes
 
 	public function frontend_enqueue()
 	{
-		if ( ! is_singular() )
-			return;
-
-		$post_id = $this->get_post_id();
-		
-		if ( ! is_integer( $post_id ) )
-			return;
-
 		wp_enqueue_script( 'get-facebook-likes', GFL_JS_URL . 'get-facebook-likes.js', array('jquery'), '1.0', true );
 
 		wp_localize_script( 'get-facebook-likes', 'GFL', array( 
-			'ajax_url' => admin_url( 'admin-ajax.php' ), 
-			'post_id' => $post_id 
+			'ajax_url' => admin_url( 'admin-ajax.php' )
 		) );
 	}
 
@@ -95,22 +93,20 @@ class Get_Facebook_Likes
 	{
 		global $post;
 
-		$post_id = null;
-
-		if ( is_int( $post ) )
-			$post_id = $post;
+		if ( get_the_ID() > 0 )
+			return get_the_ID();
 
 		if ( isset( $post->ID ) && is_int( $post->ID ) )
-			$post_id = $post->ID;
-
-		return $post_id;
+			return $post->ID;
 	}
 
-	private function is_meta_box_plugin_active()
-	{
-		return class_exists( 'RW_Meta_Box' );
-	}
-
+	/**
+	 * Create a meta box which display total likes, shares and comments
+	 * 
+	 * @param array $meta_boxes Meta Boxes
+	 * 
+	 * @return array Meta Boxes
+	 */
 	public function add_meta_boxes( $meta_boxes )
 	{
 		$meta_boxes[] = array(
@@ -147,28 +143,44 @@ class Get_Facebook_Likes
 		return $meta_boxes;
 	}
 
+	/**
+	 * Register Most Favourite Content Widget in Dashboard
+	 *
+	 * @return void
+	 */
 	public function add_dashboard_widgets()
 	{
 		wp_add_dashboard_widget(
-            'most-favourite-content',         // Widget slug.
-            'Most Favourite Content',         // Title.
+            'most-favourite-content',
+            'Most Favourite Content',
             array( $this, 'most_favourite_content' )
         );
 	}
 
+	/**
+	 * Most Favourite Content Widget in Dashboard
+	 * 
+	 * @return void
+	 */
 	public function most_favourite_content()
 	{
 		global $wpdb;
 
-		$post_ids = $wpdb->get_col( "SELECT post_id FROM {$wpdb->prefix}postmeta WHERE meta_key = 'fb_total_count' ORDER BY meta_value DESC LIMIT 10" );
+		// Get top 10 favourite posts id by total likes + shares + comments
+		$post_ids = $wpdb->get_col( 
+			"SELECT post_id 
+			FROM {$wpdb->prefix}postmeta 
+			WHERE meta_key = 'fb_total_count' 
+			ORDER BY meta_value DESC 
+			LIMIT 10"
+		);
 
+		// Loop through and display them
 		$loop = new WP_Query( array(
 			'post__in' 				=> $post_ids,
 			'ignore_sticky_posts' 	=> 1,
 			'posts_per_page'		=> 10
 		) );
-
-		$i = 0;
 
 		if ( $loop->have_posts() ) :
 			while ( $loop->have_posts() ) : $loop->the_post();
@@ -180,8 +192,18 @@ class Get_Facebook_Likes
 		endif;
 	}
 
+	/**
+	 * Update Facebook Likes, Shares, Comments count
+	 * 
+	 * @param  Integer $post_id Post ID
+	 * 
+	 * @return void
+	 */
 	public function update_likes( $post_id = null )
 	{
+		if ( is_null( $post_id ) && ! is_single( $post_id ) )
+			return;
+
 		if ( is_null( $post_id ) )
 			$post_id 		= $this->get_post_id();
 		

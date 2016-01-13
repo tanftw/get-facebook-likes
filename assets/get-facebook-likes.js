@@ -22,10 +22,10 @@ var GetFacebookLikes = {
 	 * 
 	 * @return void
 	 */
-	update: function() {
+	update: function(url) {
 		jQuery.post( GFL.ajax_url, {
 			action: 'nopriv_update_likes',
-			post_id: GFL.post_id
+			url: url
 		}, function(response) {
 			console.log(response);
 		});
