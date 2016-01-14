@@ -13,6 +13,10 @@ class Get_Facebook_Likes
 		add_filter( 'rwmb_meta_boxes', array( $this, 'add_meta_boxes' ) );
 
 		add_action( 'wp_dashboard_setup', array( $this, 'add_dashboard_widgets' ) );
+
+		add_shortcode( 'likes', array( $this, 'likes_shortcode' ) );
+		add_shortcode( 'shares', array( $this, 'shares_shortcode' ) );
+		add_shortcode( 'comments', array( $this, 'comments_shortcode' ) );
 	}
 
 	/**
