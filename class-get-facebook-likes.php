@@ -284,7 +284,10 @@ class Get_Facebook_Likes
 			'post__in' 				=> $post_ids,
 			'post_type'				=> 'any',
 			'ignore_sticky_posts' 	=> 1,
-			'posts_per_page'		=> 10
+			'posts_per_page'		=> 10,
+			'meta_key'				=> 'fb_like_count', 
+		    'orderby'				=> 'meta_value_num', 
+		    'order'					=> 'DESC'
 		) );
 
 		if ( $loop->have_posts() ) :
