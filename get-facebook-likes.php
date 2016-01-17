@@ -2,7 +2,7 @@
 /*
 Plugin Name: Get Facebook Likes
 Plugin URI: http://binaty.org/plugins/get-facebook-likes
-Description: Save Facebook Likes, Shares, Comments count in database for future query and analytics
+Description: Simple, Fast and Powerful solution to get Facebook likes, shares and comments count of your content
 Version: 1.0
 Author: Tan Nguyen
 Author URI: http://www.binaty.org
