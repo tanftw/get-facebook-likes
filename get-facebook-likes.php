@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 if ( ! defined( 'GFL_URL' ) )
 	define( 'GFL_URL', plugin_dir_url( __FILE__ ) );
 
-define( 'GFL_JS_URL', trailingslashit( GFL_URL . 'assets' ) );
+define( 'GFL_JS_URL', trailingslashit( GFL_URL . 'js' ) );
 // ------------------------------------------------------------
 // Plugin paths, for including files
 // ------------------------------------------------------------
@@ -29,5 +29,6 @@ if ( ! defined( 'GFL_DIR' ) )
 // Load the conditional logic and assets
 include GFL_DIR . 'helpers.php';
 include GFL_DIR . 'class-get-facebook-likes.php';
+include GFL_DIR . 'class-get-facebook-likes-settings.php';
 
 new Get_Facebook_Likes;
