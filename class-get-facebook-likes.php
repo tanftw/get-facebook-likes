@@ -293,7 +293,7 @@ class Get_Facebook_Likes
 		if ( $loop->have_posts() ) :
 			while ( $loop->have_posts() ) : $loop->the_post();
 				?>
-				<h3><a href="<?php echo admin_url(); ?>post.php?post=1&amp;action=edit"><?php the_title(); ?></a> 
+				<h3><a href="<?php echo admin_url(); ?>post.php?post=<?php echo get_the_ID(); ?>&amp;action=edit"><?php the_title(); ?></a> 
 				<span class="count alignright">(<?php echo fb_action_count( 'fb_total_count' ); ?>)</span></h3>
 				<?php
 			endwhile;
