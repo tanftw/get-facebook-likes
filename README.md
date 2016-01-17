@@ -29,7 +29,9 @@ We're created some helper functions and examples to make this process easier. Le
 
 Likes, Shares, Comments and Total Likes+Shares+Comments can be retrived by `fb_action_count` function
 
-`fb_action_count( $custom_field_name, $post_id )`
+```
+fb_action_count( $custom_field_name, $post_id )
+```
 
 Where
 
@@ -39,7 +41,9 @@ Where
 
 **Get Num of Likes**
 
-`get_likes( $post_id );`
+```
+get_likes( $post_id );
+```
 
 When
 
@@ -49,7 +53,9 @@ When
 
 **Display num of likes**
 
-`the_likes( $post_id );`
+```
+the_likes( $post_id );
+```
 
 This function works same as `get_likes()` but print total likes.
 
