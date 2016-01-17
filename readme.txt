@@ -10,7 +10,7 @@ Simple, Fast and Powerful solution to get Facebook likes, shares and comments co
 
 == Description ==
 
-Get Facebook Likes interacts with Facebook Graph API and saves likes, shares, and comments count to post meta right after users hit Like/Share button or leaves a Facebook comment. Therefore you can do some awesome stuff that you think it's impossible before like order post, order search results, vote, deeper analytics... by Facebook likes (and shares, comments too).
+Get Facebook Likes interacts with Facebook Graph API and saves likes, shares, and comments count to post meta right after users hit Like/Share button or leaves a Facebook comment. Therefore you can do some awesome stuff that you think it's impossible before like order posts, order search results, vote, deeper analytics... by Facebook likes (and shares, comments too).
 
 As we're both developers and end users, we're obviously love fast & ease of use plugins. Get Facebook Likes uses native Facebook JS SDK and works right after activated, no cronjob setup is required. Just a few options to tweak your script to the highest speed.
 

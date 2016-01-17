@@ -1,8 +1,8 @@
 # Get Facebook Likes
 
-Get Facebook Likes interacts with Facebook Graph API and saves likes, shares, and comments count to post meta right after users hit Like/Share button or leaves a Facebook comment. Therefore you can do some awesome stuff that you think it's impossible before like order post, order search results, vote, deeper analytics... by Facebook likes (and shares, comments too).
+*Get Facebook Likes* interacts with Facebook Graph API and saves likes, shares, and comments count to post meta right after users hit Like/Share button or leaves a Facebook comment. Therefore you can do some awesome stuff that you think it's impossible before like order posts, order search results, vote, deeper analytics... by Facebook likes (and shares, comments too).
 
-As we're both developers and end users, we're obviously love fast & ease of use plugins. Get Facebook Likes uses native Facebook JS SDK and works right after activated, no cronjob setup is required. Just a few options to tweak your script to the highest speed.
+As we're both developers and end users, we're obviously love fast & ease of use plugins. *Get Facebook Likes* uses native Facebook JS SDK and works right after activated, no cronjob setup is required. Just a few options to tweak your script to the highest speed.
 
 ## Features
 * Basic Mode which compatibility with all WP Sites 
@@ -24,7 +24,7 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 
 #### Does it requires Facebook App ID?
 
-No, Get Facebook Likes works without App ID. But it's recommended to use more advanced feature of Facebook like App Tracking, Moderate Comments, etc...
+No, *Get Facebook Likes* works without App ID. But it's recommended to use more advanced feature of Facebook like App Tracking, Moderate Comments, etc...
 
 #### I have already installed Facebook JS SDK, what option I should use? =
 If you've already installed Facebook JS SDK by placing their script right after open `body` tag or by another plugin. Just uncheck `Auto add Facebook JS SDK to wp_head` option and place `GetFacebookLikes.init();` after `FB.init();` in `window.fbAsyncInit` method like **Setup Guide** in `Settings\Get Facebook Likes`
