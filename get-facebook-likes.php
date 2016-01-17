@@ -6,6 +6,7 @@ Description: Simple, Fast and Powerful solution to get Facebook likes, shares an
 Version: 1.0
 Author: Tan Nguyen
 Author URI: http://www.binaty.org
+Tags: facebook, likes, comments, shares, widget, Post, page, shortcode
 License: GPL2+
 Text Domain: gfl
 */
