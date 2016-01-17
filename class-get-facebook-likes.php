@@ -200,6 +200,7 @@ class Get_Facebook_Likes
 
 		if ( isset( $post->ID ) && is_int( $post->ID ) )
 			return $post->ID;
+
 	}
 
 	/**
@@ -303,11 +304,11 @@ class Get_Facebook_Likes
 	 * 
 	 * @return void
 	 */
-	public function update_likes( $post_id = null )
+	public function update_likes( $post_id = '' )
 	{
-		if ( is_null( $post_id ) )
+		if ( is_null( $post_id ) || empty( $post_id ) )
 			$post_id 		= $this->get_post_id();
-		
+
 		if ( ! is_integer( $post_id ) )
 			return;
 
@@ -396,12 +397,12 @@ class Get_Facebook_Likes
 	    return $this->build_shortcode( $atts, 'like' );
 	}
 
-	public function shares_shortcode()
+	public function shares_shortcode( $atts )
 	{
 		return $this->build_shortcode( $atts, 'share' );
 	}
 
-	public function comments_shortcode()
+	public function comments_shortcode( $atts )
 	{
 		return $this->build_shortcode( $atts, 'comments' );
 	}
