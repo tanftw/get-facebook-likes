@@ -17,7 +17,7 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 ### Features
 * Basic Mode which compatibility with all WP Sites 
 * Advanced Mode which better performance and more accurate
-* Use native Facebook API so listening user event and get facebook likes/shares/comments
+* Use native Facebook API to listening user event and get facebook likes/shares/comments
 * Save likes/shares/comments to post meta for further use
 * Built-in shortcodes `[likes]`, `[shares]`, and `[comments]`
 * Likes custom column
