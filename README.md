@@ -25,16 +25,19 @@ Likes, Shares and Comments are saved in `wp_postmeta` table as `fb_like_count`, 
 
 We're created some helper functions and examples to make this process easier. Let's try it:
 
-### Get num of likes, shares, comments, or total likes+shares+comments
+**Get num of likes, shares, comments, or total likes+shares+comments**
+
 Likes, Shares, Comments and Total Likes+Shares+Comments can be retrived by `fb_action_count` function
 
 `fb_action_count( $custom_field_name, $post_id )`
 
 Where
+
 `$custom_field_name` (Required) name of custom field. Default: `fb_like_count`
+
 `$post_id` (Optional) Post ID. Default: Current Post ID
 
-### Get Num of Likes
+**Get Num of Likes**
 
 `get_likes( $post_id );`
 
@@ -44,16 +47,18 @@ When
 
 *This function is a shortcut of `fb_action_count`*
 
-### Display num of likes
+**Display num of likes**
 `the_likes( $post_id );`
+
 This function works same as `get_likes()` but print total likes.
 
-### Shortcodes to display likes, shares, or comments
+**Shortcodes to display likes, shares, or comments**
 `[likes]`, `[shares]`, and `[comments]` are shortcodes to display related action. You can also pass post `id` in case you want to display value from another post or outside the post. Like so:
+
 `[likes id="35"]`
 
-### Order Posts By Likes
-Most favourite part is here. You can order post by Facebook Likes/Shares/Comments or total of them. This is the example:
+**Order Posts By Likes**
+Most favourited part is here. You can order post by Facebook Likes/Shares/Comments or total of them. This is the example:
 
 ```
 $args = [
@@ -65,7 +70,7 @@ $args = [
 $query = new WP_Query( $args );
 ```
 
-To know more about WP_Query. See [WP Codex](https://codex.wordpress.org/Class_Reference/WP_Query).
+To learn more about WP_Query. See [WP Codex](https://codex.wordpress.org/Class_Reference/WP_Query).
 
 
 ## Frequently Asked Questions
