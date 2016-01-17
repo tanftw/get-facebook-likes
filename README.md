@@ -48,16 +48,19 @@ When
 *This function is a shortcut of `fb_action_count`*
 
 **Display num of likes**
+
 `the_likes( $post_id );`
 
 This function works same as `get_likes()` but print total likes.
 
 **Shortcodes to display likes, shares, or comments**
+
 `[likes]`, `[shares]`, and `[comments]` are shortcodes to display related action. You can also pass post `id` in case you want to display value from another post or outside the post. Like so:
 
 `[likes id="35"]`
 
 **Order Posts By Likes**
+
 Most favourited part is here. You can order post by Facebook Likes/Shares/Comments or total of them. This is the example:
 
 ```
