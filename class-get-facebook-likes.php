@@ -285,7 +285,7 @@ class Get_Facebook_Likes
 			'post_type'				=> 'any',
 			'ignore_sticky_posts' 	=> 1,
 			'posts_per_page'		=> 10,
-			'meta_key'				=> 'fb_like_count', 
+			'meta_key'				=> 'fb_total_count', 
 		    'orderby'				=> 'meta_value_num', 
 		    'order'					=> 'DESC'
 		) );
