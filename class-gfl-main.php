@@ -4,7 +4,7 @@
  * 
  * @author Tan Nguyen <tan@binaty.org>
  */
-class Get_Facebook_Likes
+class GFL_Main
 {
 	/**
 	 * Basic or Advanced Mode
@@ -63,7 +63,7 @@ class Get_Facebook_Likes
 	 */
 	public function frontend_enqueue()
 	{
-		wp_enqueue_script( 'get-facebook-likes', GFL_JS_URL . 'get-facebook-likes.js', array('jquery'), '1.0', true );
+		wp_enqueue_script( 'get-facebook-likes', GFL_JS_URL . 'gfl-main.js', array('jquery'), '1.0', true );
 
 		wp_localize_script( 'get-facebook-likes', 'GFL', array( 
 			'ajax_url' => admin_url( 'admin-ajax.php' )
@@ -88,12 +88,12 @@ class Get_Facebook_Likes
 	  	window.fbAsyncInit = function() {
 		    FB.init({
 		    	<?php if ( ! empty( $app_id ) ) echo "appId	   :'{$app_id}'," ?>
-
 		      	xfbml      : true,
 		      	version    : 'v2.5'
 		    });
-
-		    GetFacebookLikes.init();
+            
+            if (typeof GFL_Main != 'undefined')
+                GFL_Main.init();
 	  	};
 
 	  	(function(d, s, id){
@@ -294,7 +294,7 @@ class Get_Facebook_Likes
 			while ( $loop->have_posts() ) : $loop->the_post();
 				?>
 				<h3><a href="<?php echo admin_url(); ?>post.php?post=<?php echo get_the_ID(); ?>&amp;action=edit"><?php the_title(); ?></a> 
-				<span class="count alignright">(<?php echo fb_action_count( 'fb_total_count' ); ?>)</span></h3>
+				<span class="count alignright">(<?php echo gfl_facebook_count( 'fb_total_count' ); ?>)</span></h3>
 				<?php
 			endwhile;
 		endif;
@@ -339,7 +339,7 @@ class Get_Facebook_Likes
 	public function total_liked_column_content( $column_name )
 	{
 		if ( $column_name === 'likes' )
-			the_likes();
+			echo gfl_likes();
 	}
 
 	/**
@@ -385,7 +385,7 @@ class Get_Facebook_Likes
 	    if ( $id === 0 )
 	        $id = get_the_ID();
 
-	    return fb_action_count( "fb_{$action}_count", $id );
+	    return gfl_facebook_count( "fb_{$action}_count", $id );
 	}
 
 	/**

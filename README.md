@@ -1,6 +1,6 @@
 # Get Facebook Likes
 
-**Get Facebook Likes** interacts with Facebook Graph API and saves likes, shares, and comments count to post meta right after users hit Like/Share button or leaves a Facebook comment. Therefore you can do some awesome stuff that you think it's impossible before like order posts, order search results, vote, deeper analytics... by Facebook likes (and shares, comments too).
+**Get Facebook Likes** interacts with Facebook Graph API and saves likes, shares, and comments count to post meta right after users hit Like/Share button or leaves a Facebook comment therefore you can do some awesome stuff that you think it's impossible before like order posts, order search results, vote, deeper analytics... by Facebook likes (and shares, comments too).
 
 As we're both developers and end users, we're obviously love fast & ease of use plugins. **Get Facebook Likes** uses native Facebook JS SDK and works right after activated, no cronjob setup is required. Just a few options to tweak your script to the highest speed.
 
@@ -27,10 +27,10 @@ We're created some helper functions and examples to make this process easier. Le
 
 **Get num of likes, shares, comments, or total likes+shares+comments**
 
-Likes, Shares, Comments and Total Likes+Shares+Comments can be retrived by `fb_action_count` function
+Likes, Shares, Comments and Total Likes+Shares+Comments can be retrived by `gfl_facebook_count` function
 
 ```
-fb_action_count( $custom_field_name, $post_id );
+gfl_facebook_count( $custom_field_name, $post_id );
 ```
 
 Where
@@ -42,22 +42,15 @@ Where
 **Get Num of Likes**
 
 ```
-get_likes( $post_id );
+gfl_likes( $post_id );
 ```
 
 When
 
 `$post_id`: *Optional* Post ID to get likes, default: current post id
 
-*This function is a shortcut of `fb_action_count`*
+*This function is a shortcut of `gfl_facebook_count`*
 
-**Display num of likes**
-
-```
-the_likes( $post_id );
-```
-
-This function works same as `get_likes()` but print total likes.
 
 **Shortcodes to display likes, shares, or comments**
 

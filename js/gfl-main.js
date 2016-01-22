@@ -1,7 +1,9 @@
 /**
  * Get Facebook Like Object Class
+ * 
+ * @var GFL_Main
  */
-var GetFacebookLikes = {
+var GFL_Main = {
 
 	/**
 	 * Initital Method
@@ -11,10 +13,10 @@ var GetFacebookLikes = {
 	init: function() {
 		// Listening users like, share, comment event. 
 		// If users did, then send Ajax call to update post meta
-		FB.Event.subscribe('edge.create', GetFacebookLikes.update);
-		FB.Event.subscribe('edge.remove', GetFacebookLikes.update);
-		FB.Event.subscribe('comment.create', GetFacebookLikes.update);
-		FB.Event.subscribe('comment.remove', GetFacebookLikes.update);
+		FB.Event.subscribe('edge.create', GFL_Main.update);
+		FB.Event.subscribe('edge.remove', GFL_Main.update);
+		FB.Event.subscribe('comment.create', GFL_Main.update);
+		FB.Event.subscribe('comment.remove', GFL_Main.update);
 	},
 
 	/**

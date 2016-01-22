@@ -49,24 +49,13 @@ function gfl_setting( $field = null )
  * 
  * @return int Total Likes
  */
-function get_likes( $post_id = null )
+function gfl_likes( $post_id = null )
 {
-	$likes = fb_action_count( 'fb_like_count', $post_id );
+	$likes = gfl_facebook_count( 'fb_like_count', $post_id );
 
 	return apply_filters( 'the_likes', $likes );
 }
 
-/**
- * Print total likes
- * 
- * @param  int $post_id (Optional) Post Id. Default: Current post
- * 
- * @return void
- */
-function the_likes( $post_id = null )
-{
-	echo get_likes( $post_id );
-}
 
 /**
  * Return likes/shares/comments count of given post
@@ -76,12 +65,12 @@ function the_likes( $post_id = null )
  * 
  * @return int Total Likes/Shares/Comments
  */
-function fb_action_count( $action = 'fb_like_count', $post_id = null  )
+function gfl_facebook_count( $action = 'fb_like_count', $post_id = null  )
 {
 	if ( is_null( $post_id ) )
 		$post_id = get_the_ID();
 
-	$action_count = intval( get_post_meta( $post_id, $action, true ) );
+	$facebook_count = intval( get_post_meta( $post_id, $action, true ) );
 	
-	return $action_count;
+	return $facebook_count;
 }

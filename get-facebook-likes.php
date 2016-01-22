@@ -11,11 +11,11 @@ License: GPL2+
 Text Domain: gfl
 */
 
-//Prevent loading this file directly
+// Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
 //----------------------------------------------------------
-//Define plugin URL for loading static files or doing AJAX
+// Define plugin URL for loading static files or doing AJAX
 //------------------------------------------------------------
 if ( ! defined( 'GFL_URL' ) )
 	define( 'GFL_URL', plugin_dir_url( __FILE__ ) );
@@ -29,7 +29,7 @@ if ( ! defined( 'GFL_DIR' ) )
 
 // Load the conditional logic and assets
 include GFL_DIR . 'helpers.php';
-include GFL_DIR . 'class-get-facebook-likes.php';
-include GFL_DIR . 'class-get-facebook-likes-settings.php';
+include GFL_DIR . 'class-gfl-main.php';
+include GFL_DIR . 'class-gfl-settings.php';
 
-new Get_Facebook_Likes;
+new GFL_Main;

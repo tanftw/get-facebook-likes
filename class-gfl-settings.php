@@ -4,7 +4,7 @@
  *
  * @author Tan Nguyen <tan@binaty.org>
  */
-class Get_Facebook_Likes_Settings
+class GFL_Settings
 {
 	/**
 	 * Constructor only to define hooks
@@ -205,7 +205,7 @@ class Get_Facebook_Likes_Settings
 													<hr>
 													<h4><?php _e( 'Step 2', 'gfl' ); ?></h4>
 													<p>
-														<?php _e( 'Add <code>GetFacebookLikes.init();</code> after <code>FB.init();</code> in <code>window.fbAsyncInit</code> method, like so', 'gfl' ); ?>
+														<?php _e( 'Add <code>GFL_Main.init();</code> after <code>FB.init();</code> in <code>window.fbAsyncInit</code> method, like so', 'gfl' ); ?>
 	<pre>
 	window.fbAsyncInit = function() {
 	    FB.init({
@@ -215,7 +215,7 @@ class Get_Facebook_Likes_Settings
 	    });
 
 	    // <?php _e( 'Add this line', 'gfl' ); ?>
-	    GetFacebookLikes.init();
+	    GFL_Main.init();
 	};
   </pre>
 													<?php _e( "That's all", 'gfl' ); ?>
@@ -240,4 +240,4 @@ class Get_Facebook_Likes_Settings
 	}
 }
 
-new Get_Facebook_Likes_Settings;
+new GFL_Settings;
