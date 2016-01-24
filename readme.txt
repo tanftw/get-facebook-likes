@@ -25,10 +25,10 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 * Most favourite content on the Dashboard area which display top 10 posts which have most likes+shares+comments
 * Display likes/shares/comments to Post Editing screen if Meta Box plugin is installed
 
+
 ### Plugin Links
-- [Project Page](http://binaty.org/plugins/get-facebook-likes)
+- [Project Page and Documentation](http://binaty.org/plugins/get-facebook-likes)
 - [Github](https://github.com/tanng/get-facebook-likes)
-- [Documentation](https://github.com/tanng/get-facebook-likes/wiki)
 
 == Installation ==
 
@@ -39,11 +39,21 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 == Frequently Asked Questions ==
 
 = Does it requires Facebook App ID? =
-
 No, Get Facebook Likes works without App ID. But it's recommended to use more advanced feature of Facebook like App Tracking, Moderate Comments, etc...
 
 = I have already installed Facebook JS SDK, what option I should use? =
-If you've already installed Facebook JS SDK by placing their script right after open `body` tag or by another plugin. Just uncheck `Auto add Facebook JS SDK to wp_head` option and place `GetFacebookLikes.init();` after `FB.init();` in `window.fbAsyncInit` method like **Setup Guide** in `Settings\Get Facebook Likes`
+If you've already installed Facebook JS SDK by placing their script right after open `body` tag or by another plugin. Just uncheck `Auto add Facebook JS SDK to wp_head` option and place `GFL_Main.init()` after `FB.init();` in `window.fbAsyncInit` method like **Setup Guide** in `Settings\Get Facebook Likes`
+
+= Does the plugin count the likes from the beginning of time? =
+Yes, each time the update like event was fired (also applied to share, comment), it makes a `GET` request to Facebook to retrieve total count of them. This because some users may like or share your post outside of your website.
+
+
+
+== Screenshots ==
+1. Settings Page
+1. Tracking Meta Box
+1. Custom Column and Sorting
+1. Most Favourited Content
 
 
 == Changelog ==
