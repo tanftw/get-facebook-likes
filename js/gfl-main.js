@@ -50,15 +50,14 @@ var GFL_Main = {
      * 
      * @return void
      */
-    init: function() {
+    init: function () {
         
         // List of Facebook Events to subscribe. We'll subscribe all of these events by default.
         var facebookEvents = ['edge.create', 'edge.remove', 'comment.create', 'comment.remove'];
-        
-        for (var i = 0; i < facebookEvents.length; i++)
-        {
+
+        for (var i = 0; i < facebookEvents.length; i++) {
             FB.Event.subscribe(facebookEvents[i], function (url) {
-            	// With each event. We'll allows other extensions to add event listener.
+                // With each event. We'll allows other extensions to add event listener.
                 GFL.fire(facebookEvents[i], url);
 
                 GFL_Main.update(url);
@@ -71,16 +70,16 @@ var GFL_Main = {
      * 
      * @return void
      */
-    update: function(url) {
+    update: function (url) {
 
-    	// Fire event before update
+        // Fire event before update
         GFL.fire('update.before');
 
-        jQuery.post( GFL.ajax_url, {
+        jQuery.post(GFL.ajax_url, {
             action: 'nopriv_update_likes',
             url: url
-        }, function(response) {
-        	// Fire response event. User can use response argument in their function.
+        }, function (response) {
+            // Fire response event. User can use response argument in their function.
             GFL.fire('update.response', response);
         });
 
