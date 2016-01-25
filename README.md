@@ -6,13 +6,13 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 
 ## Features
 * Basic Mode which compatibility with all WP Sites 
-* Advanced Mode which better performance and more accurate
+* Advanced Mode which have better performance and more accurate
 * Use native Facebook API to listening user event and get facebook likes/shares/comments
 * Save likes/shares/comments to post meta for further use
 * Built-in shortcodes `[likes]`, `[shares]`, and `[comments]`
 * Likes custom column
 * Most favourite content on the Dashboard area which display top 10 posts which have most likes+shares+comments
-* Display likes/shares/comments to Post Editing screen if Meta Box plugin is installed
+* Display likes/shares/comments in Post Editing screen if Meta Box plugin is installed
 
 ## Installation
 
@@ -80,7 +80,7 @@ To learn more about WP_Query. See [WP Codex](https://codex.wordpress.org/Class_R
 #### Does it requires Facebook App ID?
 No, **Get Facebook Likes** works without App ID. But it's recommended to use more advanced feature of Facebook like App Tracking, Moderate Comments, etc...
 
-#### I have already installed Facebook JS SDK, what option I should use? =
+#### I have already installed Facebook JS SDK, what option I should use?
 If you've already installed Facebook JS SDK by placing their script right after open `body` tag or by another plugin. Just uncheck `Auto add Facebook JS SDK to wp_head` option and place `GFL_Main.init();` after `FB.init();` in `window.fbAsyncInit` method like **Setup Guide** in `Settings\Get Facebook Likes`
 
 #### Does the plugin count the likes from the beginning of time?
