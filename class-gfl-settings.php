@@ -43,7 +43,7 @@ class GFL_Settings
 	{
 		register_setting( 'get_facebook_likes', 'get_facebook_likes_settings' );
 
-		if ( ! isset( $_POST['_page_now'] ) || $_POST['_page_now'] != 'get-facebook-likes' )
+		if ( ! isset( $_POST['_page_now'] ) || $_POST['_page_now'] != 'gfl' )
 			return;
 
 		$settings = array();
@@ -120,7 +120,7 @@ class GFL_Settings
 			// Display success message when settings saved
 			if ( isset( $_GET['success'] ) ) : ?>
 			<div id="message" class="updated notice is-dismissible">
-				<p><?php _e( 'Settings <strong>saved</strong>.', 'wud' ); ?></p>
+				<p><?php _e( 'Settings <strong>saved</strong>.', 'gfl' ); ?></p>
 				<button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
 			</div>
 			<?php endif; ?>
@@ -134,7 +134,7 @@ class GFL_Settings
 						<div class="meta-box-sortables">
 							<div class="postbox">
 			                	<div class="handlediv" title="Click to toggle"> <br></div>
-			                  	<h3 class="hndle ui-sortable-handle"><?php _e( 'General Settings', 'wud' ); ?></h3>
+			                  	<h3 class="hndle ui-sortable-handle"><?php _e( 'General Settings', 'gfl' ); ?></h3>
 			                  	<div class="inside">
 			                    	<table class="form-table">
 			                    		<tr valign="top">
@@ -215,6 +215,7 @@ class GFL_Settings
 	    });
 
 	    // <?php _e( 'Add this line', 'gfl' ); ?>
+
 	    GFL_Main.init();
 	};
   </pre>

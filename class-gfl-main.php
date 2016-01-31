@@ -54,6 +54,8 @@ class GFL_Main
 		add_shortcode( 'likes', array( $this, 'likes_shortcode' ) );
 		add_shortcode( 'shares', array( $this, 'shares_shortcode' ) );
 		add_shortcode( 'comments', array( $this, 'comments_shortcode' ) );
+
+		add_action( 'plugins_loaded', array( $this, 'i18n' ) );
 	}
 
 	/**
@@ -408,5 +410,10 @@ class GFL_Main
 	public function comments_shortcode( $atts )
 	{
 		return $this->build_shortcode( $atts, 'comments' );
+	}
+
+	public function i18n()
+	{
+		load_plugin_textdomain( 'gfl', false, basename( GFL_DIR ) . '/lang/' );
 	}
 }

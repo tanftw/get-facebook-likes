@@ -10,6 +10,7 @@ function gfl_default_settings()
 		'actions' 	=> array( 'like_count', 'share_count', 'comment_count', 'total_count' ),
 		'mode'		=> 'basic', // basic, advanced
 		'app_id'    => '',
+		'sdk_locale'=> '',  // Set JS SDK Locale
 		'auto_add'  => true, // Auto add js sdk to wp_head
 	);
 }
@@ -73,4 +74,14 @@ function gfl_facebook_count( $action = 'fb_like_count', $post_id = null  )
 	$facebook_count = intval( get_post_meta( $post_id, $action, true ) );
 	
 	return $facebook_count;
+}
+
+/**
+ * Alias of gfl_facebook_count
+ * 
+ * @return int
+ */
+function gfl_count( $action = 'fb_like_count', $post_id = null )
+{
+	return gfl_facebook_count( $action, $post_id );
 }

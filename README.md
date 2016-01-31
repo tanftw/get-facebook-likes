@@ -27,10 +27,10 @@ We're created some helper functions and examples to make this process easier. Le
 
 **Get num of likes, shares, comments, or total likes+shares+comments**
 
-Likes, Shares, Comments and Total Likes+Shares+Comments can be retrived by `gfl_facebook_count` function
+Likes, Shares, Comments and Total Likes+Shares+Comments can be retrived by `gfl_count` function
 
 ```
-gfl_facebook_count( $custom_field_name, $post_id );
+gfl_count( $custom_field_name, $post_id );
 ```
 
 Where
@@ -49,7 +49,7 @@ When
 
 `$post_id`: *Optional* Post ID to get likes, default: current post id
 
-*This function is a shortcut of `gfl_facebook_count`*
+*This function is a shortcut of `gfl_count();`*
 
 
 **Shortcodes to display likes, shares, or comments**
@@ -89,5 +89,11 @@ Yes, each time the update like event was fired (also applied to share, comment),
 
 ## Changelog
 
-#### 1.0
+#### 1.1 (Feb 01, 2016)
+* **New** Add I18N support
+* **New** Allows users change JS SDK Locale
+* **New** Introduction to JS Event
+* **Improvement** Use `gfl_count()` instead of `gfl_facebook_count()`;
+
+#### 1.0 (Jan 24, 2016)
 * Initial Release

@@ -1,0 +1,127 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Get Facebook Likes\n"
+"POT-Creation-Date: 2016-02-01 01:13+0700\n"
+"PO-Revision-Date: 2016-02-01 00:30+0700\n"
+"Last-Translator: Tan Nguyen <tan@binaty.org>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _;__;_e;_n\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: class-gfl-main.php:330
+msgid "Likes"
+msgstr ""
+
+#: class-gfl-settings.php:29 class-gfl-settings.php:30
+#: class-gfl-settings.php:117
+msgid "Get Facebook Likes"
+msgstr ""
+
+#: class-gfl-settings.php:123
+msgid "Settings <strong>saved</strong>."
+msgstr ""
+
+#: class-gfl-settings.php:137
+msgid "General Settings"
+msgstr ""
+
+#: class-gfl-settings.php:141
+msgid "Mode"
+msgstr ""
+
+#: class-gfl-settings.php:145
+msgid "Basic"
+msgstr ""
+
+#: class-gfl-settings.php:149
+msgid ""
+"Update Likes, Shares and Comments count each time the page load. <br>\n"
+"\t\t\t\t                    \t\t\t\t\t<strong>Pros:</strong> Works "
+"immediately, no need to setup app, api key and custom js <br>\n"
+"\t\t\t\t                    \t\t\t\t\t<strong>Cons:</strong> Less accurate, "
+"a little bit slower page load"
+msgstr ""
+
+#: class-gfl-settings.php:159
+msgid "Advanced <code>Recommended</code>"
+msgstr ""
+
+#: class-gfl-settings.php:163
+msgid ""
+"Update Likes, Shares and Comments count when user hit these buttons. <br>\n"
+"\t\t\t                    \t\t\t\t\t\t<strong>Pros:</strong> More accurate, "
+"faster page load. <br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Cons:</strong> Requires you setup JS "
+"SDK.\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+msgstr ""
+
+#: class-gfl-settings.php:176
+msgid "Auto add JS SDK to <code>wp_head</code>"
+msgstr ""
+
+#: class-gfl-settings.php:180
+msgid ""
+"This will add Facebook JS SDK between <code>head</code> tags so you don't "
+"have to edit theme files.<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tPlease make sure that no other FB JS SDK "
+"installed.<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tUncheck this checkbox in case you already have "
+"FB JS SDK installed or you want to setup by yourself."
+msgstr ""
+
+#: class-gfl-settings.php:191
+msgid "<code>App ID</code> (Optional)"
+msgstr ""
+
+#: class-gfl-settings.php:193
+msgid "Your Facebook App ID. Recommended."
+msgstr ""
+
+#: class-gfl-settings.php:198
+msgid "Setup Guide"
+msgstr ""
+
+#: class-gfl-settings.php:199
+msgid ""
+"If you've already checked <code>Auto add JS SDK to wp_head</code>. Please "
+"ignore this guide."
+msgstr ""
+
+#: class-gfl-settings.php:201
+msgid "Step 1"
+msgstr ""
+
+#: class-gfl-settings.php:203
+msgid ""
+"If you've already setup Facebook JS SDK, ignore this step. Otherwise, follow "
+"<a href=\"https://developers.facebook.com/docs/javascript/quickstart/"
+"v2.5\">FB Quick Start Guide</a>"
+msgstr ""
+
+#: class-gfl-settings.php:206
+msgid "Step 2"
+msgstr ""
+
+#: class-gfl-settings.php:208
+msgid ""
+"Add <code>GFL_Main.init();</code> after <code>FB.init();</code> in "
+"<code>window.fbAsyncInit</code> method, like so"
+msgstr ""
+
+#: class-gfl-settings.php:217
+msgid "Add this line"
+msgstr ""
+
+#: class-gfl-settings.php:222
+msgid "That's all"
+msgstr ""
