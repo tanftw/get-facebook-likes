@@ -92,6 +92,7 @@ GFL.fire(event [,arguments]);
 
 #### The Events List
 Name | Arguments | Description
+---|---|---
 `edge.create` | url | Run when users hit like button
 `edge.remove` | url | Run when users hit unlike button
 `comment.create` | url | Run when users post a comment
