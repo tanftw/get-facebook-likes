@@ -27,7 +27,7 @@ We're created some helper functions and examples to make this process easier. Le
 
 **Get num of likes, shares, comments, or total likes+shares+comments**
 
-Likes, Shares, Comments and Total Likes+Shares+Comments can be retrived by `gfl_count` function
+Likes, Shares, Comments and Total Likes+Shares+Comments can be retrived by using `gfl_count()` function
 
 ```
 gfl_count( $custom_field_name, $post_id );
@@ -73,6 +73,61 @@ $query = new WP_Query( $args );
 ```
 
 To learn more about WP_Query. See [WP Codex](https://codex.wordpress.org/Class_Reference/WP_Query).
+
+
+### Javascript Events
+Version `1.1` comes with Javascript Events, this allows you listening Facebook Events, Updating Events so you can extend it to create your own addons. Awesome right?
+
+To subscribe an event, you must run `GFL.subscribe()` method after page load. The syntax like so:
+
+```js
+GFL.subscribe(event, callback);
+```
+
+To fire an event, you can run `GFL.fire()` method after pageload, like so:
+
+```js
+GFL.fire(event [,arguments]);
+```
+
+#### The Events List
+Name | Arguments | Description
+`edge.create` | url | Run when users hit like button
+`edge.remove` | url | Run when users hit unlike button
+`comment.create` | url | Run when users post a comment
+`comment.remove` | url | Run when users remove a comment
+`update.before` | null | Run when system try to update likes/shares/comments count
+`update.response` | response | Run when system return a response after update likes/shares/comments count
+`update.after` | null | Run when system updated likes/shares/comments count
+
+Example:
+
+Run an anonymous function to log url when user hit like button
+
+```js
+jQuery(document).ready(function ($) {
+	GFL.subscribe('edge.create', function(url) {
+		console.log(url);
+	});
+});
+
+```
+
+Run  `my_custom_function()` after update likes/shares/comments count
+
+```js
+
+jQuery(function($){
+
+	function my_custom_function() {
+		alert('Update Successful');
+	}
+
+	GFL.subscribe('update.after', my_custom_function)
+});
+
+```
+
 
 
 ## Frequently Asked Questions
