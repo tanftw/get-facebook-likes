@@ -71,7 +71,7 @@ var GFL_Main = {
      * @return void
      */
     update: function (url) {
-
+        
         // Fire event before update
         GFL.fire('update.before');
 

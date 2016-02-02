@@ -12,7 +12,7 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 * Built-in shortcodes `[likes]`, `[shares]`, and `[comments]`
 * Likes custom column
 * Most favourite content on the Dashboard area which display top 10 posts which have most likes+shares+comments
-* Display likes/shares/comments in Post Editing screen if Meta Box plugin is installed
+* Display likes/shares/comments in Post Editing screen if [Meta Box](https://wordpress.org/plugins/meta-box) plugin is installed
 
 ## Installation
 
@@ -130,7 +130,6 @@ jQuery(function($){
 ```
 
 
-
 ## Frequently Asked Questions
 
 #### Does it requires Facebook App ID?
@@ -145,10 +144,10 @@ Yes, each time the update like event was fired (also applied to share, comment),
 
 ## Changelog
 
-#### 1.1 (Feb 01, 2016)
+#### 1.2 (Feb 01, 2016)
+* **New** Introduction to JS Events
 * **New** Add I18N support
-* **New** Allows users change JS SDK Locale
-* **New** Introduction to JS Event
+* **New** Allows users set JS SDK Locale
 * **Improvement** Use `gfl_count()` instead of `gfl_facebook_count()`;
 
 #### 1.0 (Jan 24, 2016)

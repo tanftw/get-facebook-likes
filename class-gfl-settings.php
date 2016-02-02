@@ -43,7 +43,7 @@ class GFL_Settings
 	{
 		register_setting( 'get_facebook_likes', 'get_facebook_likes_settings' );
 
-		if ( ! isset( $_POST['_page_now'] ) || $_POST['_page_now'] != 'gfl' )
+		if ( ! isset( $_POST['_page_now'] ) || $_POST['_page_now'] != 'get-facebook-likes' )
 			return;
 
 		$settings = array();
@@ -51,6 +51,7 @@ class GFL_Settings
 		$settings['mode'] = isset( $_POST['mode'] ) ? trim( $_POST['mode'] ) : 'basic';
 		$settings['app_id'] = isset( $_POST['app_id'] ) ? trim( $_POST['app_id'] ) : '';
 		$settings['auto_add'] = isset( $_POST['auto_add'] ) ? true : false;
+		$settings['sdk_locale'] = trim( $_POST['sdk_locale'] );
 		
 		update_option( 'get_facebook_likes', $settings );
 
@@ -79,17 +80,17 @@ class GFL_Settings
 					$('#auto_add_section, #app_id_section').show();
 
 					if (autoAdd) {
-						$('#app_id_section').show();
+						$('#app_id_section, #sdk_locale_section').show();
 						$('#setup-guide').hide();
 					}
 					else {
-						$('#app_id_section').hide();
+						$('#app_id_section, #sdk_locale_section').hide();
 						$('#setup-guide').show();
 					}
 				}
 				else 
 				{
-					$('#setup-guide, #auto_add_section, #app_id_section').hide();
+					$('#setup-guide, #auto_add_section, #app_id_section, #sdk_locale_section').hide();
 				}
 			});
 
@@ -141,6 +142,7 @@ class GFL_Settings
 			                    			<th><?php _e( 'Mode', 'gfl' ); ?></th>
 			                    			<td>
 			                    				<div>
+
 				                    				<label>
 														<input type="radio" name="mode" value="basic" <?php if ( gfl_setting( 'mode' ) == 'basic' ) echo 'checked'; ?>> <?php _e( 'Basic', 'gfl' ); ?>
 				                    				</label>
@@ -155,9 +157,9 @@ class GFL_Settings
 
 			                    				<br>
 												<section>
-			                    				<label>
-													<input type="radio" name="mode" value="advanced" <?php if ( gfl_setting( 'mode' ) == 'advanced' ) echo 'checked'; ?>> <?php _e( 'Advanced <code>Recommended</code>' ); ?>
-			                    				</label>
+				                    				<label>
+														<input type="radio" name="mode" value="advanced" <?php if ( gfl_setting( 'mode' ) == 'advanced' ) echo 'checked'; ?>> <?php _e( 'Advanced', 'gfl' ); ?> <code><?php _e( 'Recommended', 'gfl' ); ?></code>
+				                    				</label>
 			                    					<p class="description">
 			                    						<?php
 			                    						_e( 'Update Likes, Shares and Comments count when user hit these buttons. <br>
@@ -172,8 +174,8 @@ class GFL_Settings
 												<section id="auto_add_section">
 
 													<label for="auto_add">
-													<input type="checkbox" id="auto_add" value="1" name="auto_add" <?php if ( gfl_setting( 'auto_add' ) === true ) echo 'checked'; ?>> 
-													<?php _e( 'Auto add JS SDK to <code>wp_head</code>', 'gfl' ); ?>
+														<input type="checkbox" id="auto_add" value="1" name="auto_add" <?php if ( gfl_setting( 'auto_add' ) === true ) echo 'checked'; ?>> 
+														<?php _e( 'Auto add JS SDK to <code>wp_head</code>', 'gfl' ); ?>
 													</label>
 													<p class="description">
 														<?php 
@@ -188,11 +190,18 @@ class GFL_Settings
 												<br>
 
 												<section id="app_id_section">
-													<label for="app_id"><?php _e( '<code>App ID</code> (Optional)', 'gfl' ); ?></label><br>
+													<label for="app_id"><code><?php _e( 'App ID', 'gfl' ); ?></code> <?php _e( 'Optional', 'gfl' ); ?></label><br>
 													<input type="text" id="app_id" name="app_id" value="<?php echo gfl_setting( 'app_id' ); ?>"> 
-													<p class="description"><?php _e( 'Your Facebook App ID. Recommended.', 'gfl' ); ?></p>
+													<p class="description"><?php _e( 'Your Facebook App ID', 'gfl' ); ?> <?php _e( 'Recommended', 'gfl' ); ?></p>
 												</section>
-													
+												
+												<section id="sdk_locale_section">
+													<label for="sdk_locale"><code><?php _e( 'SDK Locale', 'gfl' ); ?></code> <?php _e( 'Optional', 'gfl' ); ?></label><br>
+													<input type="text" id="sdk_locale" name="sdk_locale" value="<?php echo gfl_setting('sdk_locale' ); ?>">
+													<p class="description">
+														<?php _e( 'In case you\'re using Facebook SDK in your language', 'gfl' ); ?>
+													</p>
+												</section>
 
 			                    				<section id="setup-guide">
 													<h3><?php _e( 'Setup Guide', 'gfl' ); ?></h3>
@@ -215,7 +224,7 @@ class GFL_Settings
 	    });
 
 	    // <?php _e( 'Add this line', 'gfl' ); ?>
-
+	    
 	    GFL_Main.init();
 	};
   </pre>

@@ -6,12 +6,6 @@
  */
 class GFL_Main
 {
-	/**
-	 * Basic or Advanced Mode
-	 * 
-	 * @var String
-	 */
-	public $mode;
 
 	/**
 	 * Constructor only to define hooks and register things
@@ -20,15 +14,13 @@ class GFL_Main
 	 */
 	public function __construct()
 	{
-		$this->mode = gfl_setting( 'mode' );
+		$mode = gfl_setting( 'mode' );
 
 		/** Update likes/shares/comments each time singular pages load when in basic mode */
-		if ( $this->mode != 'advanced' )
+		if ( $mode != 'advanced' ) {
 			add_action( 'wp_head', array( $this, 'update_likes' ), 9999 );
-
-		/** Update likes/shares/comments when users click on these button when in advanced mode */
-		if ( $this->mode === 'advanced' )
-		{
+		}
+		else {
 			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue' ) );
 			add_action( 'wp_ajax_nopriv_update_likes', array( $this, 'ajax_update_likes' ) );
 		}
@@ -79,12 +71,15 @@ class GFL_Main
 	 */
 	public function add_facebook_js_sdk()
 	{
-		$auto_add 	= gfl_setting( 'auto_add' );
+		$auto_add 	= gfl_setting('auto_add');
 		
-		if ( ! $auto_add || $this->mode != 'advanced' )
+		if ( ! $auto_add || gfl_setting('mode') != 'advanced' )
 			return;
 
-		$app_id 	= gfl_setting( 'app_id' );
+		$app_id 	= gfl_setting('app_id');
+
+		$sdk_locale = gfl_setting('sdk_locale');
+		$sdk_locale = empty( $sdk_locale ) ? 'en_US' : $sdk_locale;
 		?>
 	<script>
 	  	window.fbAsyncInit = function() {
@@ -102,7 +97,7 @@ class GFL_Main
 	     	var js, fjs = d.getElementsByTagName(s)[0];
 	     	if (d.getElementById(id)) {return;}
 	     	js = d.createElement(s); js.id = id;
-	     	js.src = "//connect.facebook.net/en_US/sdk.js";
+	     	js.src = "//connect.facebook.net/<?php echo $sdk_locale ?>/sdk.js";
 	     	fjs.parentNode.insertBefore(js, fjs);
 	   	}(document, 'script', 'facebook-jssdk'));
 	</script>
@@ -296,7 +291,7 @@ class GFL_Main
 			while ( $loop->have_posts() ) : $loop->the_post();
 				?>
 				<h3><a href="<?php echo admin_url(); ?>post.php?post=<?php echo get_the_ID(); ?>&amp;action=edit"><?php the_title(); ?></a> 
-				<span class="count alignright">(<?php echo gfl_facebook_count( 'fb_total_count' ); ?>)</span></h3>
+				<span class="count alignright">(<?php echo gfl_count( 'fb_total_count' ); ?>)</span></h3>
 				<?php
 			endwhile;
 		endif;
@@ -387,7 +382,7 @@ class GFL_Main
 	    if ( $id === 0 )
 	        $id = get_the_ID();
 
-	    return gfl_facebook_count( "fb_{$action}_count", $id );
+	    return gfl_count( "fb_{$action}_count", $id );
 	}
 
 	/**
@@ -412,6 +407,11 @@ class GFL_Main
 		return $this->build_shortcode( $atts, 'comments' );
 	}
 
+	/**
+	 * Define Internationalization
+	 * 
+	 * @return void
+	 */
 	public function i18n()
 	{
 		load_plugin_textdomain( 'gfl', false, basename( GFL_DIR ) . '/lang/' );
