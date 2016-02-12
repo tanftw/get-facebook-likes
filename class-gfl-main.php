@@ -409,11 +409,12 @@ class GFL_Main
 
 	/**
 	 * Define Internationalization
-	 * 
+	 *
+	 * @since  1.1 
 	 * @return void
 	 */
 	public function i18n()
 	{
-		load_plugin_textdomain( 'gfl', false, basename( GFL_DIR ) . '/lang/' );
+		load_plugin_textdomain( 'get-facebook-likes', false, basename( GFL_DIR ) . '/lang/' );
 	}
 }

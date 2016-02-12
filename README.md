@@ -1,6 +1,6 @@
 # Get Facebook Likes
 
-**Get Facebook Likes** interacts with Facebook Graph API and saves likes, shares, and comments count to post meta right after users hit Like/Share button or leaves a Facebook comment therefore you can do some awesome stuff that you think it's impossible before like order posts, order search results, vote, deeper analytics... by Facebook likes (and shares, comments too).
+[Get Facebook Likes](https://binaty.org/plugins/get-facebook-likes) interacts with Facebook Graph API and saves likes, shares, and comments count to post meta right after users hit Like/Share button or leaves a Facebook comment therefore you can do some awesome stuff that you think it's impossible before like order posts, order search results, vote, deeper analytics... by Facebook likes (and shares, comments too).
 
 As we're both developers and end users, we're obviously love fast & ease of use plugins. **Get Facebook Likes** uses native Facebook JS SDK and works right after activated, no cronjob setup is required. Just a few options to tweak your script to the highest speed.
 
@@ -141,10 +141,22 @@ If you've already installed Facebook JS SDK by placing their script right after 
 #### Does the plugin count the likes from the beginning of time?
 Yes, each time the update like event was fired (also applied to share, comment), it makes a `GET` request to Facebook to retrieve total count of them. This because some users may like or share your post outside of your website.
 
+## Roadmap
+
+#### 1.2
+* **New** Most Liked Widget
+* **New** Auto add `like` and `share` buttons so users don't have to edit theme file or use other plugins
+
 
 ## Changelog
 
-#### 1.2 (Feb 01, 2016)
+#### 1.1.1 (Feb, 14, 2016)
+* **Improvement** Add settings page hooks
+* **Improvement** Most Favourite Content widget now showing Likes and Shares
+* **Fix** Javascript Event doesn't works properly
+* **Fix** Use WordPress recommended text domain
+
+#### 1.1 (Feb 01, 2016)
 * **New** Introduction to JS Events
 * **New** Add I18N support
 * **New** Allows users set JS SDK Locale

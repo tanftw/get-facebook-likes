@@ -13,7 +13,7 @@ GFL.events = [];
 GFL.subscribe = function (name, callback) {
     if (typeof GFL.events[name] == 'undefined')
         GFL.events[name] = []
-
+    
     GFL.events[name].push(callback)
 };
 
@@ -52,17 +52,26 @@ var GFL_Main = {
      */
     init: function () {
         
-        // List of Facebook Events to subscribe. We'll subscribe all of these events by default.
-        var facebookEvents = ['edge.create', 'edge.remove', 'comment.create', 'comment.remove'];
+        FB.Event.subscribe('edge.create', function (url) {
+            GFL_Main.fireAndUpdate('edge.create', url);
+        });
 
-        for (var i = 0; i < facebookEvents.length; i++) {
-            FB.Event.subscribe(facebookEvents[i], function (url) {
-                // With each event. We'll allows other extensions to add event listener.
-                GFL.fire(facebookEvents[i], url);
+        FB.Event.subscribe('edge.remove', function (url) {
+            GFL_Main.fireAndUpdate('edge.remove', url);
+        });
 
-                GFL_Main.update(url);
-            });
-        }
+        FB.Event.subscribe('comment.create', function (url) {
+            GFL_Main.fireAndUpdate('comment.create', url);
+        });
+
+        FB.Event.subscribe('comment.remove', function (url) {
+            GFL_Main.fireAndUpdate('comment.remove', url);
+        });
+    },
+
+    fireAndUpdate: function(event, url) {
+        GFL.fire(event, url);
+        GFL_Main.update(url);
     },
 
     /**
