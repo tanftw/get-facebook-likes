@@ -57,7 +57,7 @@ class GFL_Main
 	 */
 	public function frontend_enqueue()
 	{
-		wp_enqueue_script( 'get-facebook-likes', GFL_JS_URL . 'gfl-main.js', array('jquery'), '1.0', true );
+		wp_enqueue_script( 'get-facebook-likes', GFL_JS_URL . 'gfl-main.min.js', array('jquery'), '1.0', true );
 
 		wp_localize_script( 'get-facebook-likes', 'GFL', array( 
 			'ajax_url' => admin_url( 'admin-ajax.php' )

@@ -68,6 +68,7 @@ Yes, each time the update like event was fired (also applied to share, comment),
 = 1.1.1 (Feb, 14, 2016) =
 * **Improvement** Add settings page hooks
 * **Improvement** Most Favourite Content widget now showing Likes and Shares
+* **Improvement** Add minified script <code>gfl-main.min.js</code>
 * **Fix** Javascript Event doesn't works properly
 * **Fix** Use WordPress recommended text domain
 
