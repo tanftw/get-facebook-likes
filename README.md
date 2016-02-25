@@ -14,6 +14,14 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 * Most favourite content on the Dashboard area which display top 10 posts which have most likes+shares+comments
 * Display likes/shares/comments in Post Editing screen if [Meta Box](https://wordpress.org/plugins/meta-box) plugin is installed
 
+### Use Cases
+* Display most liked post from your website
+* Create a contest on your website which use Facebook Like (or Share) to vote
+* Restrict content, require at least X likes to view.
+* Discount your product if it has at least X likes
+* Track Facebook likes, shares, comments per day
+* ... 
+
 ## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/get-facebook-likes` directory, or install the plugin through the WordPress plugins screen directly.
@@ -147,10 +155,10 @@ Yes, each time the update like event was fired (also applied to share, comment),
 * **New** Most Liked Widget
 * **New** Auto add `like` and `share` buttons so users don't have to edit theme file or use other plugins
 
-
 ## Changelog
 
-#### 1.1.1 (Feb, 14, 2016)
+#### 1.1.1 (Feb, 25, 2016)
+* **Improvement** Add Likes, Shares, Comments columns in Most Favourite Content meta box
 * **Improvement** Add settings page hooks and default settings filter
 * **Improvement** Most Favourite Content widget now showing Likes and Shares
 * **Improvement** Add minified script <code>gfl-main.min.js</code>

@@ -302,9 +302,9 @@ class GFL_Main
 				?>
 				<tr>
 					<td><a href="<?php echo admin_url(); ?>post.php?post=<?php echo get_the_ID(); ?>&amp;action=edit"><?php the_title(); ?></a></td>
-					<td><?php echo gfl_count( 'fb_total_count' ); ?></span></td>
-					<td><?php echo gfl_count( 'fb_total_count' ); ?></span></td>
-					<td><?php echo gfl_count( 'fb_total_count' ); ?></span></td>
+					<td><?php echo gfl_count( 'fb_like_count' ); ?></span></td>
+					<td><?php echo gfl_count( 'fb_share_count' ); ?></span></td>
+					<td><?php echo gfl_count( 'fb_comment_count' ); ?></span></td>
 					<td><?php echo gfl_count( 'fb_total_count' ); ?></span></td>
 				</tr>
 				<?php

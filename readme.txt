@@ -28,6 +28,15 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 * Display likes/shares/comments in Post Editing screen if [Meta Box](https://wordpress.org/plugins/meta-box) plugin is installed
 * **One click install, can't be simpler.**
 
+### Use Cases
+* Display most liked post from your website
+* Create a contest on your website which use Facebook Like (or Share) to vote
+* Restrict content, require at least X likes to view.
+* Discount your product if it has at least X likes
+* Track Facebook likes, shares, comments per day
+* ... 
+
+
 ### Why using Get Facebook Likes?
 * There're a few plugins available here, you can also found some tutorials on Google but they're mostly using outdated Facebook API versions, some using FQL which is deprecated. 
 * Most of them merges likes and shares into one field so you won't know exactly how many likes or shares. 
@@ -65,7 +74,8 @@ Yes, each time the update like event was fired (also applied to share, comment),
 
 == Changelog ==
 
-= 1.1.1 (Feb, 14, 2016) =
+= 1.1.1 (Feb, 25, 2016) =
+* **Improvement** Add Likes, Shares, Comments columns in Most Favourite Content meta box
 * **Improvement** Add settings page hooks
 * **Improvement** Most Favourite Content widget now showing Likes and Shares
 * **Improvement** Add minified script <code>gfl-main.min.js</code>
