@@ -10,7 +10,7 @@ As we're both developers and end users, we're obviously love fast & ease of use 
 * Use native Facebook API to listening user event and get facebook likes/shares/comments
 * Save likes/shares/comments to post meta for further use
 * Built-in shortcodes `[likes]`, `[shares]`, and `[comments]`
-* Likes custom column
+* Likes custom column and sorting
 * Most favourite content on the Dashboard area which display top 10 posts which have most likes+shares+comments
 * Display likes/shares/comments in Post Editing screen if [Meta Box](https://wordpress.org/plugins/meta-box) plugin is installed
 

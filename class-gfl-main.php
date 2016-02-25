@@ -286,15 +286,35 @@ class GFL_Main
 		    'orderby'				=> 'meta_value_num', 
 		    'order'					=> 'DESC'
 		) );
-
+		?>
+		
+		<table>
+			<tr>
+				<td width="80%"><h3>Post</h3></td>
+				<td><span title="Likes" class="dashicons dashicons-thumbs-up"></span></td>
+				<td><span title="Shares" class="dashicons dashicons-share"></span></td>
+				<td><span title="Comments" class="dashicons dashicons-format-chat"></span></td>
+				<td><span title="Total" class="dashicons dashicons-facebook-alt"></span></td>
+			</tr>
+		<?php
 		if ( $loop->have_posts() ) :
 			while ( $loop->have_posts() ) : $loop->the_post();
 				?>
-				<h3><a href="<?php echo admin_url(); ?>post.php?post=<?php echo get_the_ID(); ?>&amp;action=edit"><?php the_title(); ?></a> 
-				<span class="count alignright">(<?php echo gfl_count( 'fb_total_count' ); ?>)</span></h3>
+				<tr>
+					<td><a href="<?php echo admin_url(); ?>post.php?post=<?php echo get_the_ID(); ?>&amp;action=edit"><?php the_title(); ?></a></td>
+					<td><?php echo gfl_count( 'fb_total_count' ); ?></span></td>
+					<td><?php echo gfl_count( 'fb_total_count' ); ?></span></td>
+					<td><?php echo gfl_count( 'fb_total_count' ); ?></span></td>
+					<td><?php echo gfl_count( 'fb_total_count' ); ?></span></td>
+				</tr>
 				<?php
 			endwhile;
-		endif;
+		else :
+		?>
+			<td colspan="5"><?php  _e( 'No content to show', 'get-facebook-likes' );?></td>
+		<?php endif; ?>
+		</table>
+		<?php
 	}
 
 	/**
