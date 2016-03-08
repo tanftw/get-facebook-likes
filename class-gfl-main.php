@@ -6,6 +6,12 @@
  */
 class GFL_Main
 {
+	/**
+	 * Sort params
+	 * 
+	 * @var String
+	 */
+	public $fsortby;
 
 	/**
 	 * Constructor only to define hooks and register things
@@ -41,6 +47,10 @@ class GFL_Main
 		add_filter( 'manage_edit-post_sortable_columns', array( $this, 'sort_total_liked_column' ) );
 		add_filter( 'manage_edit-page_sortable_columns', array( $this, 'sort_total_liked_column' ) );
 		add_action( 'pre_get_posts', array( $this, 'sort_by_likes' ) );
+
+		/** Sort by views via url */
+		add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
+		add_action( 'pre_get_posts', array( $this, 'sort_posts' ) );
 
 		/** Register Shortcodes **/
 		add_shortcode( 'likes', array( $this, 'likes_shortcode' ) );
@@ -424,7 +434,7 @@ class GFL_Main
 
 	public function comments_shortcode( $atts )
 	{
-		return $this->build_shortcode( $atts, 'comments' );
+		return $this->build_shortcode( $atts, 'comment' );
 	}
 
 	/**
@@ -436,5 +446,87 @@ class GFL_Main
 	public function i18n()
 	{
 		load_plugin_textdomain( 'get-facebook-likes', false, basename( GFL_DIR ) . '/lang/' );
+	}
+
+	/**
+	 * Add query vars filter
+	 * 
+	 * @param $public_query_vars
+	 */
+	public function add_query_vars( $public_query_vars )
+	{
+		$public_query_vars[] = 'fsortby';
+	    $public_query_vars[] = 'forderby';
+
+	    return $public_query_vars;
+	}
+
+	/**
+	 * Sort posts by fsortby & forderby parameters
+	 */
+	public function sort_posts( $local_wp_query ) 
+	{
+		// Set fsortby
+		$this->fsortby = $local_wp_query->get( 'fsortby' );
+
+	    if ( in_array( $this->fsortby, array( 'likes', 'shares', 'comments', 'all' ) ) ) 
+	    {
+	        add_filter('posts_fields', array( $this, 'posts_fields' ) );
+	        add_filter('posts_join', array( $this, 'posts_join' ) );
+	        add_filter('posts_where', array( $this, 'posts_where' ) );
+	        add_filter('posts_orderby', array( $this, 'posts_orderby' ) );
+	    } 
+	    else 
+	    {
+	        remove_filter( 'posts_fields', array( $this, 'posts_fields' ) );
+	        remove_filter( 'posts_join', array( $this, 'posts_join' ) );
+	        remove_filter( 'posts_where', array( $this, 'posts_where' ) );
+	        remove_filter( 'posts_orderby', array( $this, 'posts_orderby' ) );
+	    }
+	}
+
+	public function posts_fields( $fields )
+	{
+		global $wpdb;
+	    
+	    $as = gfl_get_field( $this->fsortby );
+
+	    $fields .= ", ({$wpdb->postmeta}.meta_value+0) AS {$as}";
+
+	    return $fields;
+	}
+
+	public function posts_join( $content ) 
+	{
+	    global $wpdb;
+
+	    $content .= " LEFT JOIN {$wpdb->postmeta} ON {$wpdb->postmeta}.post_id = {$wpdb->posts}.ID";
+	   
+	    return $content;
+	}
+	
+	public function posts_where( $content ) 
+	{
+	    global $wpdb;
+	    
+	    $meta_key = gfl_get_field( $this->fsortby );
+
+	    $content .= " AND {$wpdb->postmeta}.meta_key = '{$meta_key}'";
+	    
+	    return $content;
+	}
+	
+	public function posts_orderby( $content ) 
+	{
+	    $orderby = trim( addslashes( get_query_var( 'forderby' ) ) );
+
+	    if ( empty( $orderby ) || ! in_array( $orderby, array( 'asc' ,'desc' ) ) )
+	        $orderby = 'desc';
+	    
+	    $fsortby = gfl_get_field( $this->fsortby );
+
+	    $content = " {$fsortby} $orderby";
+
+	    return $content;
 	}
 }

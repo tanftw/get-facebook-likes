@@ -80,6 +80,15 @@ $args = [
 $query = new WP_Query( $args );
 ```
 
+Or simply pass variables to URL like so:
+```
+http://example.com/?fsortby=likes&forderby=desc
+```
+
+Please note that
+<strong>fsortby</strong> supports `likes`, `shares`, `comments`, and `all`
+<strong>forderby</strong> supports `asc`, and `desc`
+
 To learn more about WP_Query. See [WP Codex](https://codex.wordpress.org/Class_Reference/WP_Query).
 
 
@@ -157,7 +166,12 @@ Yes, each time the update like event was fired (also applied to share, comment),
 
 ## Changelog
 
-#### 1.1.1 (Feb, 25, 2016)
+#### 1.1.2 (March 08, 2016)
+* **New** Add sorting query args so user can sort posts via url
+* **New** Convert to K, M, B if total likes, shares, comments is more than 10k
+* **Fix** [comments] shortcode doesn't works
+
+#### 1.1.1 (Feb 25, 2016)
 * **Improvement** Add Likes, Shares, Comments columns in Most Favourite Content meta box
 * **Improvement** Add settings page hooks and default settings filter
 * **Improvement** Most Favourite Content widget now showing Likes and Shares

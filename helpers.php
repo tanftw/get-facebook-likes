@@ -56,7 +56,7 @@ function gfl_likes( $post_id = null )
 {
 	$likes = gfl_facebook_count( 'fb_like_count', $post_id );
 
-	return apply_filters( 'the_likes', $likes );
+	return apply_filters( 'gfl_likes', $likes );
 }
 
 
@@ -68,14 +68,47 @@ function gfl_likes( $post_id = null )
  * 
  * @return int Total Likes/Shares/Comments
  */
-function gfl_facebook_count( $action = 'fb_like_count', $post_id = null )
+function gfl_facebook_count( $action = 'fb_like_count', $post_id = null, $number_format = true )
 {
 	if ( is_null( $post_id ) )
 		$post_id = get_the_ID();
 
 	$facebook_count = intval( get_post_meta( $post_id, $action, true ) );
 	
+	if ( $number_format )
+		$facebook_count = gfl_number_format( $facebook_count );
+
 	return $facebook_count;
+}
+
+/**
+ * Convert to K, M, B if number is more than 10k
+ * 
+ * @param  Integer $number Numeric value
+ * 
+ * @return String Formatted number
+ * @since  1.1.2
+ */
+function gfl_number_format( $number )
+{
+	if ( $number < 10000 )
+        return number_format_i18n( $number );
+    
+    $alphabets = array( 1000000000 => 'B', 1000000 => 'M', 1000 => 'K' );
+
+    foreach( $alphabets as $key => $value ) 
+    {
+    	$rounded = round( $number / $key, 1 );
+
+    	if ( $number >= $key )
+    	{
+    		if ( $rounded < $number / $key )
+    			return $rounded . $value . '+';
+
+    		if ( $rounded == $number / $key )
+    			return $rounded . $value;
+    	}
+    }
 }
 
 /**
@@ -87,5 +120,21 @@ function gfl_facebook_count( $action = 'fb_like_count', $post_id = null )
  */
 function gfl_count( $action = 'fb_like_count', $post_id = null )
 {
-	return gfl_facebook_count( $action, $post_id );
+	return gfl_facebook_count( $action, $post_id, true );
+}
+
+/**
+ * Get field by action name
+ * 
+ * @return String $action
+ */
+function gfl_get_field( $action )
+{
+	if ( $action[strlen( $action ) - 1] == 's' )
+		$action = rtrim( $action, 's' );
+
+	if ( $action === 'all' )
+		$action = 'total';
+	
+	return "fb_{$action}_count";
 }

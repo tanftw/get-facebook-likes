@@ -3,7 +3,7 @@ Contributors: tanng
 Tags: facebook, likes, comments, shares, widget, Post, posts, admin, page, shortcode, plugin, get facebook likes, custom field
 Requires at least: 3.6
 Tested up to: 4.4.2
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,8 +73,12 @@ Yes, each time the update like event was fired (also applied to share, comment),
 
 
 == Changelog ==
+= 1.1.2 (March 08, 2016) =
+* **New** Add sorting query args so user can sort posts via url
+* **New** Convert to K, M, B if total likes, shares, comments is more than 10k
+* **Fix** [comments] shortcode doesn't works
 
-= 1.1.1 (Feb, 25, 2016) =
+= 1.1.1 (Feb 25, 2016) =
 * **Improvement** Add Likes, Shares, Comments columns in Most Favourite Content meta box
 * **Improvement** Add settings page hooks
 * **Improvement** Most Favourite Content widget now showing Likes and Shares
@@ -88,5 +92,5 @@ Yes, each time the update like event was fired (also applied to share, comment),
 * **New** Allows users set JS SDK Locale
 * **Improvement** Use `gfl_count()` instead of `gfl_facebook_count()`;
 
-= 1.0 (Jan, 24, 2016) =
+= 1.0 (Jan 24, 2016) =
 * Initial Release
